@@ -1,59 +1,280 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# 🔐 Secure Auth API
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+API REST de autenticação segura desenvolvida com Laravel, implementando OAuth2, práticas avançadas de segurança e arquitetura limpa seguindo princípios SOLID.
 
-## About Laravel
+## 📋 Sobre o Projeto
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+Este projeto é uma API de autenticação robusta e segura, projetada para aplicações que exigem alto nível de segurança, como sistemas financeiros. A API implementa autenticação OAuth2 com Passport, proteção contra ataques comuns, rate limiting, e segue as melhores práticas de desenvolvimento com Clean Code e SOLID.
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+### 🎯 Objetivos
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+- Implementar autenticação segura com OAuth2 e JWT
+- Aplicar práticas avançadas de segurança (OWASP Top 10)
+- Seguir princípios SOLID e Clean Architecture
+- Criar uma base sólida para aplicações que exigem alta segurança
+- Demonstrar boas práticas de desenvolvimento Laravel
 
-## Learning Laravel
+## 🚀 Tecnologias
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework. You can also check out [Laravel Learn](https://laravel.com/learn), where you will be guided through building a modern Laravel application.
+### Core
+- **[Laravel 12.x](https://laravel.com)** - Framework PHP
+- **[PHP 8.2+](https://www.php.net/)** - Linguagem de programação
+- **[PostgreSQL 16](https://www.postgresql.org/)** - Banco de dados relacional
+- **[Redis](https://redis.io/)** - Cache e sessões
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+### Autenticação & Segurança
+- **[Laravel Passport](https://laravel.com/docs/passport)** - OAuth2 Server
+- **JWT (JSON Web Tokens)** - Tokens de autenticação
+- **Rate Limiting** - Proteção contra força bruta
+- **CORS** - Controle de acesso cross-origin
+- **Encryption** - Criptografia de dados sensíveis
 
-## Laravel Sponsors
+### Infraestrutura
+- **[Docker](https://www.docker.com/)** - Containerização
+- **[Docker Compose](https://docs.docker.com/compose/)** - Orquestração de containers
+- **[Nginx](https://www.nginx.com/)** - Servidor web
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+### Desenvolvimento
+- **[Composer](https://getcomposer.org/)** - Gerenciador de dependências PHP
+- **[Pest](https://pestphp.com/)** - Framework de testes
+- **[PHPUnit](https://phpunit.de/)** - Testes unitários
 
-### Premium Partners
+## 🏗️ Arquitetura
 
-- **[Vehikl](https://vehikl.com)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Redberry](https://redberry.international/laravel-development)**
-- **[Active Logic](https://activelogic.com)**
+O projeto segue os princípios de **Clean Architecture** e **SOLID**:
 
-## Contributing
+```
+app/
+├── Http/
+│   ├── Controllers/     # Controladores (camada de apresentação)
+│   ├── Requests/        # Validação de requisições
+│   └── Resources/       # Transformação de respostas
+├── Models/              # Modelos Eloquent
+├── Services/            # Lógica de negócio
+├── Repositories/        # Camada de acesso a dados
+└── Providers/           # Service Providers
+```
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+### Recursos Implementados
 
-## Code of Conduct
+- ✅ Registro de usuários com validação
+- ✅ Login com OAuth2
+- ✅ Refresh tokens
+- ✅ Logout seguro
+- ✅ Proteção CSRF
+- ✅ Rate limiting por IP
+- ✅ Validação de dados robusta
+- ✅ Criptografia de senhas com bcrypt
+- ✅ Migrations para versionamento do banco
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+### Recursos Planejados
 
-## Security Vulnerabilities
+- 🔄 Autenticação de dois fatores (2FA)
+- 🔄 Recuperação de senha
+- 🔄 Verificação de e-mail
+- 🔄 Auditoria de acessos
+- 🔄 Permissões e roles (RBAC)
+- 🔄 API de gerenciamento de usuários
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+## 📦 Instalação e Configuração
 
-## License
+### Pré-requisitos
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+- Docker e Docker Compose instalados
+- Git
+
+### Passo a Passo
+
+1. **Clone o repositório**
+```bash
+git clone https://github.com/victorufg/secure-auth-api.git
+cd secure-auth-api
+```
+
+2. **Configure as variáveis de ambiente**
+```bash
+cp .env.example .env
+```
+
+Edite o arquivo `.env` com suas configurações:
+```env
+APP_NAME="Secure Auth API"
+APP_ENV=local
+APP_KEY=
+APP_DEBUG=true
+APP_URL=http://localhost
+
+DB_CONNECTION=pgsql
+DB_HOST=postgres
+DB_PORT=5432
+DB_DATABASE=auth_api
+DB_USERNAME=postgres
+DB_PASSWORD=secret
+
+CACHE_DRIVER=redis
+SESSION_DRIVER=redis
+REDIS_HOST=redis
+REDIS_PORT=6379
+```
+
+3. **Inicie os containers Docker**
+```bash
+docker-compose up -d
+```
+
+4. **Instale as dependências**
+```bash
+docker-compose exec app composer install
+```
+
+5. **Gere a chave da aplicação**
+```bash
+docker-compose exec app php artisan key:generate
+```
+
+6. **Execute as migrations**
+```bash
+docker-compose exec app php artisan migrate
+```
+
+7. **Instale o Passport**
+```bash
+docker-compose exec app php artisan passport:install
+```
+
+A API estará disponível em `http://localhost:8000`
+
+## 🧪 Testes
+
+### Executar todos os testes
+```bash
+docker-compose exec app php artisan test
+```
+
+### Executar testes específicos
+```bash
+# Testes de feature
+docker-compose exec app php artisan test --testsuite=Feature
+
+# Testes unitários
+docker-compose exec app php artisan test --testsuite=Unit
+
+# Teste específico
+docker-compose exec app php artisan test --filter=ExampleTest
+```
+
+### Cobertura de testes
+```bash
+docker-compose exec app php artisan test --coverage
+```
+
+## 📚 Documentação da API
+
+### Endpoints Principais
+
+#### Registro
+```http
+POST /api/register
+Content-Type: application/json
+
+{
+  "name": "João Silva",
+  "email": "joao@example.com",
+  "password": "senha123",
+  "password_confirmation": "senha123"
+}
+```
+
+#### Login
+```http
+POST /api/login
+Content-Type: application/json
+
+{
+  "email": "joao@example.com",
+  "password": "senha123"
+}
+```
+
+#### Logout
+```http
+POST /api/logout
+Authorization: Bearer {token}
+```
+
+#### Refresh Token
+```http
+POST /api/refresh
+Authorization: Bearer {token}
+```
+
+## 🔒 Segurança
+
+Este projeto implementa diversas camadas de segurança:
+
+- **Autenticação OAuth2** com tokens de acesso e refresh
+- **Rate Limiting** para prevenir ataques de força bruta
+- **Validação rigorosa** de todas as entradas
+- **Proteção CSRF** em formulários
+- **Headers de segurança** (HSTS, X-Frame-Options, etc.)
+- **Criptografia** de dados sensíveis
+- **Sanitização** de inputs
+- **Prepared Statements** para prevenir SQL Injection
+
+## 🛠️ Desenvolvimento
+
+### Comandos Úteis
+
+```bash
+# Acessar o container da aplicação
+docker-compose exec app bash
+
+# Ver logs
+docker-compose logs -f app
+
+# Parar os containers
+docker-compose down
+
+# Rebuild dos containers
+docker-compose up -d --build
+
+# Limpar cache
+docker-compose exec app php artisan cache:clear
+docker-compose exec app php artisan config:clear
+docker-compose exec app php artisan route:clear
+```
+
+## 📝 Roadmap
+
+- [x] Setup inicial do projeto
+- [x] Configuração Docker
+- [x] Autenticação básica com Passport
+- [ ] Implementar 2FA
+- [ ] Sistema de permissões (RBAC)
+- [ ] Auditoria de acessos
+- [ ] Documentação Swagger/OpenAPI
+- [ ] CI/CD com GitHub Actions
+- [ ] Monitoramento e logs avançados
+
+## 🤝 Contribuindo
+
+Contribuições são bem-vindas! Por favor:
+
+1. Faça um fork do projeto
+2. Crie uma branch para sua feature (`git checkout -b feature/MinhaFeature`)
+3. Commit suas mudanças (`git commit -m 'Adiciona MinhaFeature'`)
+4. Push para a branch (`git push origin feature/MinhaFeature`)
+5. Abra um Pull Request
+
+## 📄 Licença
+
+Este projeto está sob a licença MIT. Veja o arquivo [LICENSE](LICENSE) para mais detalhes.
+
+## 👨‍💻 Autor
+
+**Victor Hugo**
+- GitHub: [@victorufg](https://github.com/victorufg)
+
+---
+
+⭐ Se este projeto foi útil para você, considere dar uma estrela!
