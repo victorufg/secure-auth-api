@@ -59,6 +59,9 @@ jobs:
           echo "DB_USERNAME=postgres" >> .env
           echo "DB_PASSWORD=password" >> .env
       
+      - name: Generate Passport keys
+        run: php artisan passport:keys --force
+      
       - name: Run migrations
         run: php artisan migrate --force
       
