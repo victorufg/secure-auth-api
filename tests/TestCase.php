@@ -14,13 +14,15 @@ abstract class TestCase extends BaseTestCase
         parent::setUp();
         
         // Create Personal Access Client if it doesn't exist
-        if (!\Laravel\Passport\Client::where('personal_access_client', true)->exists()) {
+        $existingClient = \Laravel\Passport\PersonalAccessClient::first();
+        
+        if (!$existingClient) {
             $client = \Laravel\Passport\Client::create([
                 'name' => 'Test Personal Access Client',
                 'secret' => null,
                 'provider' => 'users',
-                'personal_access_client' => true,
-                'password_client' => false,
+                'redirect_uris' => json_encode([]),
+                'grant_types' => json_encode(['personal_access']),
                 'revoked' => false,
             ]);
             
