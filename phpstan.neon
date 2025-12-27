@@ -12,5 +12,3 @@ parameters:
         - '#Call to an undefined method Illuminate\\Contracts\\Auth\\Authenticatable::token\(\)#'
     
     # Configurações adicionais
-    checkMissingIterableValueType: false
-    checkGenericClassInNonGenericObjectType: false
