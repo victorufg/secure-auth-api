@@ -2,8 +2,9 @@
 
 use App\Models\User;
 use Laravel\Passport\Passport;
-use function Pest\Laravel\postJson;
+
 use function Pest\Laravel\getJson;
+use function Pest\Laravel\postJson;
 
 test('authenticated user can logout', function () {
     $user = User::factory()->create();

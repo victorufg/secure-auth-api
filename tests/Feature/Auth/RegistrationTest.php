@@ -1,6 +1,5 @@
 <?php
 
-use App\Models\User;
 use function Pest\Laravel\postJson;
 
 test('user can register with valid data', function () {

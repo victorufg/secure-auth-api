@@ -3,11 +3,11 @@
 namespace App\Http\Controllers\Api\Auth;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\JsonResponse;
 use App\Http\Requests\Auth\RegisterRequest;
-use App\Models\User;
-use Illuminate\Support\Facades\Hash;
 use App\Http\Resources\UserResource;
+use App\Models\User;
+use Illuminate\Http\JsonResponse;
+use Illuminate\Support\Facades\Hash;
 
 class RegisterController extends Controller
 {

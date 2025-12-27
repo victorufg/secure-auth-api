@@ -3,22 +3,22 @@
 namespace App\Http\Controllers\Api\Auth;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
-use App\Models\User;
-use Illuminate\Support\Facades\Hash;
 use App\Http\Requests\Auth\LoginRequest;
+use App\Models\User;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\ValidationException;
 
 class LoginController extends Controller
 {
     public function login(LoginRequest $request)
-    {   
+    {
         $user = User::where('email', $request->email)->first();
-        
-        if (!$user || !Hash::check($request->password, $user->password)) {
-           throw ValidationException::withMessages([
-               'email' => ['As credenciais fornecidas estão incorretas.'],
-           ]);
+
+        if (! $user || ! Hash::check($request->password, $user->password)) {
+            throw ValidationException::withMessages([
+                'email' => ['As credenciais fornecidas estão incorretas.'],
+            ]);
         }
 
         $token = $user->createToken('auth-token')->accessToken;
