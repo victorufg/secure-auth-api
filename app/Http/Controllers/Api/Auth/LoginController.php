@@ -34,7 +34,7 @@ class LoginController extends Controller
     {
         /** @var \App\Models\User $user */
         $user = $request->user();
-        
+
         /** @var \Laravel\Passport\Token $token */
         $token = $user->token();
         $token->revoke();
