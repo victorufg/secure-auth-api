@@ -9,6 +9,6 @@ parameters:
     
     # Ignora erros conhecidos do Passport
     ignoreErrors:
-        - '#Call to an undefined method Illuminate\\Contracts\\Auth\\Authenticatable::token\(\)#'
+
     
     # Configurações adicionais

@@ -32,7 +32,9 @@ class LoginController extends Controller
 
     public function logout(Request $request)
     {
-        $request->user()->token()->revoke();
+        /** @var \App\Models\User $user */
+        $user = $request->user();
+        $user->token()->revoke();
 
         return response()->json([
             'message' => 'Logout realizado com sucesso.',
