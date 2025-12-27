@@ -29,7 +29,10 @@ WORKDIR /var/www
 
 # Ajustar permissões para o usuário padrão do Alpine
 RUN addgroup -S www && adduser -S www -G www
-USER www
+# USER www - Comentado para evitar problemas de permissão com volumes
+
+# Copiar configuração do PHP-FPM para rodar como root
+COPY docker/php/www.conf /usr/local/etc/php-fpm.d/www.conf
 
 # Expor a porta 9000 para o PHP-FPM
 EXPOSE 9000
