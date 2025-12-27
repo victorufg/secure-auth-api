@@ -34,7 +34,10 @@ class LoginController extends Controller
     {
         /** @var \App\Models\User $user */
         $user = $request->user();
-        $user->token()->revoke();
+        
+        /** @var \Laravel\Passport\Token $token */
+        $token = $user->token();
+        $token->revoke();
 
         return response()->json([
             'message' => 'Logout realizado com sucesso.',
