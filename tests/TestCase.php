@@ -19,7 +19,6 @@ abstract class TestCase extends BaseTestCase
                 'name' => 'Test Personal Access Client',
                 'secret' => null,
                 'provider' => 'users',
-                'redirect' => 'http://localhost',
                 'personal_access_client' => true,
                 'password_client' => false,
                 'revoked' => false,
