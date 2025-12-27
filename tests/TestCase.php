@@ -14,7 +14,7 @@ abstract class TestCase extends BaseTestCase
         parent::setUp();
         
         // Create Personal Access Client if it doesn't exist
-        $existingClient = \Laravel\Passport\PersonalAccessClient::first();
+        $existingClient = \DB::table('oauth_personal_access_clients')->first();
         
         if (!$existingClient) {
             $client = \Laravel\Passport\Client::create([
@@ -26,8 +26,10 @@ abstract class TestCase extends BaseTestCase
                 'revoked' => false,
             ]);
             
-            \Laravel\Passport\PersonalAccessClient::create([
+            \DB::table('oauth_personal_access_clients')->insert([
                 'client_id' => $client->id,
+                'created_at' => now(),
+                'updated_at' => now(),
             ]);
         }
     }
