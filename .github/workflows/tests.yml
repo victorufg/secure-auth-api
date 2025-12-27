@@ -65,6 +65,8 @@ jobs:
       - name: Run migrations
         run: php artisan migrate --force
       
+      - name: Create Passport client
+        run: php artisan passport:client --personal --name="Test Personal Access Client" --no-interaction
       
       - name: Run tests
         run: php artisan test
