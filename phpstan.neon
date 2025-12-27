@@ -1,0 +1,16 @@
+includes:
+    - vendor/larastan/larastan/extension.neon
+
+parameters:
+    level: 5
+    paths:
+        - app
+        - routes
+    
+    # Ignora erros conhecidos do Passport
+    ignoreErrors:
+        - '#Call to an undefined method Illuminate\\Contracts\\Auth\\Authenticatable::token\(\)#'
+    
+    # Configurações adicionais
+    checkMissingIterableValueType: false
+    checkGenericClassInNonGenericObjectType: false
