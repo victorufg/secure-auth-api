@@ -57,24 +57,38 @@ app/
 
 ### Recursos Implementados
 
+#### Autenticação e Autorização
 - ✅ Registro de usuários com validação
-- ✅ Login com OAuth2
-- ✅ Refresh tokens
-- ✅ Logout seguro
-- ✅ Proteção CSRF
-- ✅ Rate limiting por IP
-- ✅ Validação de dados robusta
+- ✅ Login com OAuth2 (Laravel Passport)
+- ✅ Refresh tokens (renovação automática)
+- ✅ Logout seguro (revogação de tokens)
+- ✅ Endpoint /me (dados do usuário autenticado)
+
+#### Segurança
+- ✅ HTTPS obrigatório em produção
+- ✅ Security Headers (HSTS, CSP, X-Frame-Options, etc.)
+- ✅ Rate Limiting por IP (login, register, refresh)
+- ✅ Validação de senha forte (complexidade + senhas comprometidas)
+- ✅ Audit Logging (login, logout, registro)
+- ✅ CORS configurado
 - ✅ Criptografia de senhas com bcrypt
+- ✅ Prepared Statements (Eloquent ORM)
+
+#### Infraestrutura
+- ✅ Docker (PHP 8.3, PostgreSQL, Nginx, Redis)
 - ✅ Migrations para versionamento do banco
+- ✅ Testes automatizados (PHPUnit)
+- ✅ Documentação da API com Swagger/OpenAPI
 
 ### Recursos Planejados
 
 - 🔄 Autenticação de dois fatores (2FA)
-- 🔄 Recuperação de senha
+- 🔄 Recuperação de senha via email
 - 🔄 Verificação de e-mail
-- 🔄 Auditoria de acessos
 - 🔄 Permissões e roles (RBAC)
-- 🔄 API de gerenciamento de usuários
+- 🔄 API de gerenciamento de usuários (CRUD completo)
+- 🔄 Notificações em tempo real
+- 🔄 CI/CD com GitHub Actions
 
 ## 📦 Instalação e Configuração
 
@@ -103,6 +117,11 @@ APP_ENV=local
 APP_KEY=
 APP_DEBUG=true
 APP_URL=http://localhost
+
+# CORS - Origens permitidas (separadas por vírgula)
+# Deixe vazio para permitir todas (*) em desenvolvimento
+# Exemplo: CORS_ALLOWED_ORIGINS=http://localhost:3000,https://app.example.com
+CORS_ALLOWED_ORIGINS=
 
 DB_CONNECTION=pgsql
 DB_HOST=postgres
@@ -170,7 +189,22 @@ docker-compose exec app php artisan test --coverage
 
 ## 📚 Documentação da API
 
+### Swagger UI (Documentação Interativa)
+
+Acesse a documentação interativa da API em:
+
+```
+http://localhost/api/documentation
+```
+
+**Recursos:**
+- 📖 Documentação completa de todos os endpoints
+- 🧪 Teste os endpoints diretamente no navegador
+- 📋 Exemplos de requisições e respostas
+- 🔐 Suporte para autenticação Bearer Token
+
 ### Endpoints Principais
+
 
 #### Registro
 ```http
@@ -180,10 +214,21 @@ Content-Type: application/json
 {
   "name": "João Silva",
   "email": "joao@example.com",
-  "password": "senha123",
-  "password_confirmation": "senha123"
+  "password": "SenhaForte123!",
+  "password_confirmation": "SenhaForte123!"
 }
 ```
+
+**Requisitos de Senha:**
+- **Desenvolvimento**: Mínimo de 8 caracteres
+- **Produção**: 
+  - Mínimo de 12 caracteres
+  - Pelo menos uma letra maiúscula (A-Z)
+  - Pelo menos uma letra minúscula (a-z)
+  - Pelo menos um número (0-9)
+  - Pelo menos um caractere especial (@$!%*#?&)
+  - Não pode ser uma senha comprometida em vazamentos de dados
+
 
 #### Login
 ```http
@@ -213,13 +258,16 @@ Authorization: Bearer {token}
 Este projeto implementa diversas camadas de segurança:
 
 - **Autenticação OAuth2** com tokens de acesso e refresh
+- **HTTPS obrigatório** em produção (URLs forçadas para HTTPS)
+- **Security Headers** (HSTS, CSP, X-Frame-Options, X-Content-Type-Options, etc.)
+- **Audit Logging** de ações sensíveis (login, logout, registro)
 - **Rate Limiting** para prevenir ataques de força bruta
-- **Validação rigorosa** de todas as entradas
-- **Proteção CSRF** em formulários
-- **Headers de segurança** (HSTS, X-Frame-Options, etc.)
-- **Criptografia** de dados sensíveis
-- **Sanitização** de inputs
-- **Prepared Statements** para prevenir SQL Injection
+- **Validação rigorosa** de todas as entradas com Form Requests
+- **Validação de senha forte** com verificação de senhas comprometidas
+- **Tokens de curta duração** (15 minutos) para reduzir janela de exploração
+- **CORS** configurado para controlar acesso cross-origin
+- **Criptografia** de senhas com bcrypt
+- **Prepared Statements** (Eloquent) para prevenir SQL Injection
 
 ## 🛠️ Desenvolvimento
 
@@ -249,11 +297,18 @@ docker-compose exec app php artisan route:clear
 - [x] Setup inicial do projeto
 - [x] Configuração Docker
 - [x] Autenticação básica com Passport
+- [x] Refresh Tokens
+- [x] Rate Limiting
+- [x] Validação de senha forte
+- [x] Security Headers (HSTS, CSP, etc.)
+- [x] CORS configurado
+- [x] Auditoria de acessos (Audit Logging)
+- [x] Documentação Swagger/OpenAPI
+- [x] CI/CD com GitHub Actions
 - [ ] Implementar 2FA
 - [ ] Sistema de permissões (RBAC)
-- [ ] Auditoria de acessos
-- [ ] Documentação Swagger/OpenAPI
-- [ ] CI/CD com GitHub Actions
+- [ ] Recuperação de senha via email
+- [ ] Verificação de email
 - [ ] Monitoramento e logs avançados
 
 ## 🤝 Contribuindo

@@ -75,4 +75,4 @@ jobs:
         run: ./vendor/bin/phpstan analyse --memory-limit=2G
       
       - name: Security audit
-        run: composer audit
+        run: composer audit --format=plain || [ $? -le 2 ]

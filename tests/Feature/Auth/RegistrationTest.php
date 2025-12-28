@@ -61,3 +61,21 @@ test('registration fails when password confirmation does not match', function ()
     $response->assertStatus(422)
         ->assertJsonValidationErrors(['password']);
 });
+
+test('registration succeeds with strong password', function () {
+    $response = postJson('/api/register', [
+        'name' => 'Test User',
+        'email' => 'test4@example.com',
+        'password' => 'SenhaForte123!',
+        'password_confirmation' => 'SenhaForte123!',
+    ]);
+
+    $response->assertStatus(201)
+        ->assertJsonStructure([
+            'access_token',
+            'refresh_token',
+            'token_type',
+            'expires_in',
+            'user',
+        ]);
+});
