@@ -1,6 +1,5 @@
 <?php
 
-
 use App\Http\Controllers\Api\Auth\LoginController;
 use App\Http\Controllers\Api\Auth\RefreshTokenController;
 use App\Http\Controllers\Api\Auth\RegisterController;

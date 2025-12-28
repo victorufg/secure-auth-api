@@ -28,7 +28,7 @@ class AppServiceProvider extends ServiceProvider
         }
 
         Passport::ignoreRoutes();
-        
+
         // Configurar tempo de expiração dos tokens
         Passport::tokensExpireIn(now()->addMinutes(config('passport.token_expiration.access_token', 15)));
         Passport::refreshTokensExpireIn(now()->addMinutes(config('passport.token_expiration.refresh_token', 43200)));
