@@ -43,4 +43,20 @@ return [
 
     'connection' => env('PASSPORT_CONNECTION'),
 
+    /*
+    |--------------------------------------------------------------------------
+    | Token Expiration
+    |--------------------------------------------------------------------------
+    |
+    | Here you may define the expiration time for access tokens and refresh
+    | tokens. Access tokens should have a short lifetime for security while
+    | refresh tokens can have a longer lifetime for better user experience.
+    |
+    */
+
+    'token_expiration' => [
+        'access_token' => env('PASSPORT_ACCESS_TOKEN_EXPIRE', 15), // minutes
+        'refresh_token' => env('PASSPORT_REFRESH_TOKEN_EXPIRE', 43200), // minutes (30 days)
+    ],
+
 ];
