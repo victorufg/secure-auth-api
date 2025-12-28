@@ -89,8 +89,7 @@ class LoginController extends Controller
             ]);
         }
 
-        $token = $user->createToken('auth-token');
-        $refreshToken = $token->token->refreshToken;
+        $tokenResult = $user->createToken('auth-token');
 
         // Log de sucesso de login
         AuditLog::logSuccess('login', $user->id, [
@@ -98,8 +97,8 @@ class LoginController extends Controller
         ]);
 
         return response()->json([
-            'access_token' => $token->accessToken,
-            'refresh_token' => $refreshToken ? $refreshToken->id : null,
+            'access_token' => $tokenResult->accessToken,
+            'refresh_token' => null,
             'token_type' => 'Bearer',
             'expires_in' => config('passport.token_expiration.access_token', 15) * 60, // em segundos
             'user' => $user,

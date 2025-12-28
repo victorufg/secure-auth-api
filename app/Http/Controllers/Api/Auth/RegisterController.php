@@ -89,13 +89,12 @@ class RegisterController extends Controller
         ]);
 
         // Gerar token
-        $token = $user->createToken('auth-token');
-        $refreshToken = $token->token->refreshToken;
+        $tokenResult = $user->createToken('auth-token');
 
         // Retornar resposta
         return response()->json([
-            'access_token' => $token->accessToken,
-            'refresh_token' => $refreshToken ? $refreshToken->id : null,
+            'access_token' => $tokenResult->accessToken,
+            'refresh_token' => null,
             'token_type' => 'Bearer',
             'expires_in' => config('passport.token_expiration.access_token', 15) * 60, // em segundos
             'user' => new UserResource($user),
