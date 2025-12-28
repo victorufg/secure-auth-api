@@ -12,7 +12,10 @@ return Application::configure(basePath: dirname(__DIR__))
         health: '/up',
     )
     ->withMiddleware(function (Middleware $middleware): void {
-        // Removido statefulApi() - requer Sanctum, estamos usando Passport
+        // Adicionar Security Headers globalmente para API
+        $middleware->api(append: [
+            \App\Http\Middleware\SecurityHeaders::class,
+        ]);
     })
     ->withExceptions(function (Exceptions $exceptions): void {
         $exceptions->render(function (\Illuminate\Auth\AuthenticationException $e, $request) {
@@ -20,6 +23,15 @@ return Application::configure(basePath: dirname(__DIR__))
                 return response()->json([
                     'message' => 'Unauthenticated.',
                 ], 401);
+            }
+        });
+
+        $exceptions->render(function (\Illuminate\Http\Exceptions\ThrottleRequestsException $e, $request) {
+            if ($request->is('api/*')) {
+                return response()->json([
+                    'message' => 'Muitas tentativas. Por favor, tente novamente em alguns instantes.',
+                    'retry_after' => $e->getHeaders()['Retry-After'] ?? null,
+                ], 429);
             }
         });
     })->create();
